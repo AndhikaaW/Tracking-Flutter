@@ -32,10 +32,10 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {
           _errorMessage = null;
         });
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => role == 'admin' ? DashboardAdmin() : DashboardClient(),
+            builder: (context) => role == 'admin' ? DashboardAdmin(message: email,password: password,) : DashboardClient(),
           ),
         );
       } else {

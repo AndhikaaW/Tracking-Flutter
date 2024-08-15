@@ -1,6 +1,10 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:tracking_flutter/screens/category.dart';
+import 'package:tracking_flutter/screens/database.dart';
+import 'package:tracking_flutter/screens/login_screen.dart';
 import 'package:tracking_flutter/services/remote_service.dart';
 
 import '../models/category.dart';
@@ -13,46 +17,51 @@ class DashboardClient extends StatefulWidget {
 }
 
 class _DashboardClientState extends State<DashboardClient> {
-  List<Category>? categories;
-  var isLoaded = false;
-
-  @override
-  void initState(){
-    super.initState();
-
-   getData();
-  }
-  getData() async {
-    categories = await RemoteService().getCategories();
-    if(categories != null){
-      setState(() {
-        isLoaded = true;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-        itemCount: categories?.length,
-        itemBuilder:(context, index) {
-          return Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-               Text(categories![index].name),
-               Image(
-                 image: MemoryImage(base64Decode(categories![index].icon)),
-                 width: 100,
-                 height: 100,
-                 fit: BoxFit.cover,
-               ),
-               Text(categories![index].description)
-             ],
-            )
-          );
-        },
+    return DefaultTabController(
+      initialIndex: 1,
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Dashboard'),
+          bottom: const TabBar(
+            tabs: <Widget>[
+              Tab(
+                child: Text("category"),
+                icon: Icon(Icons.category),
+              ),
+              Tab(
+                child: Text("person"),
+                icon: Icon(Icons.person),
+              ),
+              Tab(
+                child: Text("menu"),
+                icon: Icon(Icons.restaurant_menu),
+              ),
+              Tab(
+                child: Text("contact"),
+                icon: Icon(Icons.perm_contact_calendar_rounded),
+              ),
+            ],
+          ),
+        ),
+        body: const TabBarView(
+          children: <Widget>[
+          Center(
+          child: CategoryScreen(),
+          ),
+          Center(
+          child: Data(),
+          ),
+          Center(
+          child: Text("It's sunny here"),
+          ),
+          Center(
+          child: Text("It's sunny here"),
+          ),
+          ],
+        )
       ),
     );
   }
