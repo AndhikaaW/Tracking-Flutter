@@ -19,7 +19,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   void initState(){
     super.initState();
-
     getData();
   }
   getData() async {
@@ -28,6 +27,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       setState(() {
         isLoaded = true;
       });
+
     }
   }
 
@@ -43,12 +43,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
               children: [
                // Text(categories![index].id.toString()),
                Text(categories?[index].name?? 'No Name'),
-               // Image(
-               //   image: MemoryImage(base64Decode(categories?[index].icon ?? 'No Icon')),
-               //   width: 100,
-               //   height: 100,
-               //   fit: BoxFit.cover,
-               // ),
+               Image(
+                 image: MemoryImage(base64Decode(categories?[index].icon ?? 'No Icon')),
+                 width: 100,
+                 height: 100,
+                 fit: BoxFit.cover,
+               ),
                 Text(categories?[index].description ?? 'No Description')
              ],
             )

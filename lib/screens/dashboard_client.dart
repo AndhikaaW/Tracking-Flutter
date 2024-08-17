@@ -2,8 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:tracking_flutter/screens/category.dart';
-import 'package:tracking_flutter/screens/database.dart';
+import 'package:tracking_flutter/components/category.dart';
+import 'package:tracking_flutter/components/database.dart';
+import 'package:tracking_flutter/components/myWeather.dart';
+import 'package:tracking_flutter/components/saveVar.dart';
+import 'package:tracking_flutter/components/sidebar.dart';
 import 'package:tracking_flutter/screens/login_screen.dart';
 import 'package:tracking_flutter/services/remote_service.dart';
 
@@ -23,6 +26,7 @@ class _DashboardClientState extends State<DashboardClient> {
       initialIndex: 1,
       length: 4,
       child: Scaffold(
+        // drawer: Sidebar(),
         appBar: AppBar(
           title: const Text('Dashboard'),
           bottom: const TabBar(
@@ -55,10 +59,10 @@ class _DashboardClientState extends State<DashboardClient> {
           child: Data(),
           ),
           Center(
-          child: Text("It's sunny here"),
+          child: SaveVariable(),
           ),
           Center(
-          child: Text("It's sunny here"),
+          child: MyWeather(),
           ),
           ],
         )

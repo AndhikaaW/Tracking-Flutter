@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tracking_flutter/screens/home_admin.dart';
+import 'package:tracking_flutter/components/database.dart';
+import 'package:tracking_flutter/components/home_admin.dart';
+import 'package:tracking_flutter/components/sidebar.dart';
 
 class DashboardAdmin extends StatefulWidget {
   // const DashboardAdmin({super.key });
@@ -21,14 +23,16 @@ class _DashboardAdminState extends State<DashboardAdmin> {
     body = [
       HomeAdmin(message: widget.message, password: widget.password),
       const Icon(Icons.menu),
-      const Icon(Icons.person)
+      Data()
     ];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      drawer: Sidebar(),
+      appBar: AppBar(),
+      // backgroundColor: Colors.green,
       body: Center(
         child: body[_currentIndex],
       ),
